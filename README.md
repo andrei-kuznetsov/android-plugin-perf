@@ -2,7 +2,7 @@
 Diagnostics plugin to measure basic aspects of IJ Android Plugin performance
 
 ## Installation
-1. Download pre-built archive from here (TODO)
+1. Download pre-built archive from [here](https://github.com/andrei-kuznetsov/android-plugin-perf/packages/241259/versions)
 1. `Find Action (Ctrl+Shift+A) > Plugins`
 ![plugins](readmeFiles/plugins.png)
 
