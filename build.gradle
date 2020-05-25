@@ -1,10 +1,11 @@
 plugins {
     id 'java'
     id 'org.jetbrains.intellij' version '0.4.21'
+    id "maven-publish"
 }
 
 group 'name.kuznetc'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 repositories {
     mavenCentral()
@@ -21,4 +22,24 @@ intellij {
 patchPluginXml {
     changeNotes """
       Supports profiling of BindingFinder, logging of findClass/findPackage methods and provides basic android-project metrics """
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "android-plugin-perf"
+            url = uri("https://maven.pkg.github.com/andrei-kuznetsov/android-plugin-perf")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            artifact(file("build/distributions/android-plugin-perf-${project.version}.zip")) {
+                builtBy buildPlugin
+            }
+        }
+    }
 }
